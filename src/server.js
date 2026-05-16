@@ -1,8 +1,9 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import pinoHttp from 'pino-http';
 
-const express = require('express');
-const cors = require('cors');
-const pinoHttp =require('pino-http');
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,7 +18,6 @@ app.get('/notes', (req, res) => {
   });
 });
 
-
 app.get('/notes/:noteId', (req, res) => {
   const { noteId } = req.params;
 
@@ -25,7 +25,6 @@ app.get('/notes/:noteId', (req, res) => {
     message: `Retrieved note with ID: ${noteId}`,
   });
 });
-
 
 app.get('/test-error', (req, res) => {
   throw new Error('Simulated server error');
