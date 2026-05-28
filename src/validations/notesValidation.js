@@ -1,6 +1,13 @@
 import {Joi, Segments} from "celebrate";
 import { isValidObjectId } from "mongoose";
 
+export const getNotesSchema = {
+  [Segments.QUERY]: Joi.object({
+    page: Joi.number().integer().min(1).default(1),
+    perPage: Joi.number().integer().default(10),
+  }),
+};
+
 export const getAllNotesSchema = {
   [Segments.BODY]: Joi.object({
     page: Joi.number().min(1).required(1),
