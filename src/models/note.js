@@ -1,6 +1,6 @@
 import {Schema, model} from 'mongoose';
 
-import {TAGS} from '../constants/tags';
+import {TAGS} from '../constants/tags.js';
 
 const noteSchema = new Schema(
   {
@@ -26,4 +26,4 @@ const noteSchema = new Schema(
   }
 );
 
-export const Note = model('Note', noteSchema);
+export const Note = model('notes', noteSchema);
