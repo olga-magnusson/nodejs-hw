@@ -12,6 +12,7 @@ export const getAllNotes = async(req, res, next)=>{
       notesQuery.skip(skip).limit(perPage),
     ]);
 
+
     const totalPages = Math.ceil(totalNotes/perPage);
     res.status(200).json({page, perPage, totalNotes, totalPages, notes,});
   } catch (error) {
