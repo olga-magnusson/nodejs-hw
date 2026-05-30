@@ -2,11 +2,11 @@ export const TAGS = [
   'Work',
   'Personal',
   'Meeting',
-  'Shooping',
+  'Shopping',
   'Ideas',
   'Travel',
   'Finance',
   'Health',
-  'Importent',
+  'Important',
   'Todo',
 ];
