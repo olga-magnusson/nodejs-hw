@@ -12,6 +12,8 @@ import notesRoutes from './routes/notesRoutes.js';
 
 import authRoutes from './routes/authRoutes.js';
 
+import cookieParser from 'cookie-parser';
+
 dotenv.config();
 
 const app = express();
@@ -27,6 +29,10 @@ app.use(notFoundHandler);
 app.use(errors());
 
 app.use(errorHandler);
+
+app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 const bootstrap = async ()=>{
   try{
