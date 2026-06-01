@@ -7,7 +7,9 @@ export const getAllNotes = async(req, res, next)=>{
     const perPage = Number(req.query.perPage) || 10;
     const {tag, search} = req.query;
     const skip = (page-1)*perPage;
-    const filter = {};
+    const filter = {
+      userId: req.user._id,
+    };
 
     if(tag) {
       filter.tag = tag;
@@ -18,11 +20,10 @@ export const getAllNotes = async(req, res, next)=>{
           {content: { $regex: search, $options:'i'}},
         ];
     }
-    const notesQuery = Note.find({userId: req.user._id});
 
     const [totalNotes, notes] = await Promise.all([
-      notesQuery.clone().countDocuments(),
-      notesQuery.skip(skip).limit(perPage),
+      Note.countDocuments(),
+      Note.find(filter).skip(skip).limit(perPage),
     ]);
 
 
@@ -51,9 +52,10 @@ export const getNoteById = async(req,res,next) => {
 
 export const createNote = async (req, res, next) => {
   try{
-    const newNote = await Note.create(req.body,
-     { userId: req.user._id},
-    );
+    const newNote = await Note.create({
+      ...req.body,
+      userId: req.user._id
+    });
     res.status(201).json(newNote);
   } catch (error){
     next(error);

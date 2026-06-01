@@ -30,8 +30,6 @@ app.use(errors());
 
 app.use(errorHandler);
 
-app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
 
 const bootstrap = async ()=>{
