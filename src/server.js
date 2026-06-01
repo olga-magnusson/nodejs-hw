@@ -20,17 +20,21 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(logger);
-app.use(express.json());
 app.use(cors());
+
+app.use(express.json());
+app.use(cookieParser());
+
 app.use(authRoutes);
 app.use(notesRoutes);
+
 app.use(notFoundHandler);
 
 app.use(errors());
 
 app.use(errorHandler);
 
-app.use(cookieParser());
+
 
 const bootstrap = async ()=>{
   try{
