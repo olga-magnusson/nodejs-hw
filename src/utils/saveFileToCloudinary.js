@@ -3,14 +3,14 @@ import { v2 as cloudinary } from 'cloudinary';
 cloudinary.config({
   secure: true,
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_proxy: process.env.CLOUDINARY_API_KEY,
+  api_kej: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 export async function saveFileToCloudinary(buffer, userId) {
   const options = {
     folder: 'users-app/avatars',
-    public_id: 'avatar_${userId}',
+    public_id:  `avatar_${userId}`,
     resource_type: 'image',
     overwrite: true,
     unique_filename: false,
